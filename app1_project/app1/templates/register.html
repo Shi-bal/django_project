@@ -1,19 +1,125 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <title>Love Connect - Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #ff4757);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .login-container {
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+            position: relative;
+            z-index: 10;
+        }
+        .login-container h1 {
+            color: #ff4757;
+            margin-bottom: 30px;
+        }
+        .login-input {
+            width: calc(100% - 24px); /* Adjust width to account for border and padding */
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ff6b6b;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s;
+            text-align: center; /* Center the text inside the input */
+        }
+        .login-input::placeholder {
+            text-align: center; /* Center the placeholder text */
+        }
+        .login-input:focus {
+            border-color: #ff4757;
+        }
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        .login-button:hover {
+            background-color: #ff6b6b;
+        }
+        .error-message {
+            color: #ff4757;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255,255,255,0.2);
+            transform: rotate(45deg);
+            animation: float 10s infinite;
+        }
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: rotate(45deg) translateY(100vh);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: rotate(45deg) translateY(-100vh);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Register</h1>
-    <form method="post">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Register</button>
-    </form>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    <div class="login-container">
+        <h1>Love Connect</h1>
+        
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" class="login-input" required>
+            <input type="password" name="password" placeholder="Password" class="login-input" required>
+            <button type="submit" class="login-button">Login</button>
+            
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+
+        </form>
+
+        <p>Already have an account? <a href="{% url 'login' %}">Register here</a></p>
+
+    </div>
+
+    <script>
+        function createHearts() {
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDuration = `${5 + Math.random() * 10}s`;
+                heart.style.opacity = Math.random();
+                document.body.appendChild(heart);
+            }
+        }
+        createHearts();
+    </script>
 </body>
 </html>

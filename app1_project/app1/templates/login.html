@@ -3,123 +3,147 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Love Connect - Login</title>
+    <title>NGL - Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #ff6b6b, #ff4757);
+            background-color: #f8f9fa;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
+            padding: 2rem;
         }
+
         .login-container {
-            background-color: rgba(255,255,255,0.9);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background: white;
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff8fa3;
             text-align: center;
-            width: 300px;
-            position: relative;
-            z-index: 10;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
         }
-        .login-container h1 {
-            color: #ff4757;
-            margin-bottom: 30px;
+
+        .form-group {
+            margin-bottom: 1.2rem;
         }
-        .login-input {
-            width: calc(100% - 24px); /* Adjust width to account for border and padding */
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #ff6b6b;
-            border-radius: 25px;
+
+        .input-field {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 1.5px solid #eee;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            background: #fafafa;
+            color: #333;
+        }
+
+        .input-field::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .input-field:focus {
             outline: none;
-            transition: border-color 0.3s;
-            text-align: center; /* Center the text inside the input */
+            border-color: #ff8fa3;
+            background: white;
         }
-        .login-input::placeholder {
-            text-align: center; /* Center the placeholder text */
-        }
-        .login-input:focus {
-            border-color: #ff4757;
-        }
+
         .login-button {
             width: 100%;
-            padding: 12px;
-            background-color: #ff4757;
+            padding: 1rem;
+            background-color: #ff8fa3;
             color: white;
             border: none;
-            border-radius: 25px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 20px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-top: 1rem;
         }
+
         .login-button:hover {
-            background-color: #ff6b6b;
+            background-color: #ff7c93;
+            transform: translateY(-1px);
         }
+
         .error-message {
-            color: #ff4757;
-            margin-top: 15px;
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 1rem;
             text-align: center;
         }
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: rgba(255,255,255,0.2);
-            transform: rotate(45deg);
-            animation: float 10s infinite;
+
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
         }
-        @keyframes float {
-            0% {
-                opacity: 0;
-                transform: rotate(45deg) translateY(100vh);
+
+        .register-link a {
+            color: #ff8fa3;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 0.3rem;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 2rem 1.5rem;
             }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: rotate(45deg) translateY(-100vh);
+            
+            body {
+                padding: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h1>Love Connect</h1>
+        <h1 class="logo">NGL</h1>
         
         <form method="post">
             {% csrf_token %}
-            <input type="text" name="username" placeholder="Username" class="login-input" required>
-            <input type="password" name="password" placeholder="Password" class="login-input" required>
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" class="input-field" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" class="input-field" required>
+            </div>
             <button type="submit" class="login-button">Login</button>
             
             {% if error %}
                 <p class="error-message">{{ error }}</p>
             {% endif %}
-
-
         </form>
 
-        <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
-
+        <p class="register-link">
+            Dont have an account yet??<a href="{% url 'register' %}">Login</a>
+        </p>
     </div>
-
-    <script>
-        function createHearts() {
-            for (let i = 0; i < 50; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.style.left = `${Math.random() * 100}%`;
-                heart.style.animationDuration = `${5 + Math.random() * 10}s`;
-                heart.style.opacity = Math.random();
-                document.body.appendChild(heart);
-            }
-        }
-        createHearts();
-    </script>
 </body>
 </html>

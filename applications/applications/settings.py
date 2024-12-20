@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'app1', 
+    'app2', 
+
     
 ]
 
@@ -52,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'app1_project.urls'
+ROOT_URLCONF = 'applications.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app1_project.wsgi.application'
+WSGI_APPLICATION = 'applications.wsgi.application'
 
 
 # Database

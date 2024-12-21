@@ -175,7 +175,7 @@
                     </div>
                     <div class="message-detail">
                         <span class="message-label">Message:</span>
-                        {{ message.encrypted_text }}
+                        {{ message.content}}
                     </div>
                     <form method="POST">
                         {% csrf_token %}

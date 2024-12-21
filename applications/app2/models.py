@@ -1,7 +1,7 @@
 from django.db import models
 
 class Message(models.Model):
-    plain_text = models.TextField()
+    plain_text = models.TextField(blank=True, null=True)
     encrypted_text = models.TextField()
     receiver = models.CharField(max_length=255)  # As receiver doesn't need to be registered user
     sender = models.CharField(max_length=255)  # To store the encrypted sender username

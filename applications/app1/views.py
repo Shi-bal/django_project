@@ -1,10 +1,10 @@
+import psycopg
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from .utils import encrypt_message
-from .models import Message  # Import the Message model
-
+from app2.models import Message
 
 
 

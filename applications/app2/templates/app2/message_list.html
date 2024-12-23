@@ -151,7 +151,7 @@
 <body>
     <nav class="navbar">
         <a href="/" class="logo">NGL</a>
-        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        <form action="{% url 'app2:logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="logout-btn">Logout</button>
         </form>

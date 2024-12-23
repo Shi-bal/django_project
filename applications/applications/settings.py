@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 
@@ -142,3 +142,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # print(f"Loaded FERNET_SECRET_KEY: {FERNET_SECRET_KEY}")
+
+# email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nestal.rp@gmail.com'
+EMAIL_HOST_PASSWORD = '09126794730'
+DEFAULT_FROM_EMAIL = 'nestal.rp@gmail.com'
+
+# Session settings
+SESSION_COOKIE_AGE = 3600 # 1 hour in seconds
+SESSION_COOKIE_SECURE = True  # for HTTPS
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False # Log user out when browser is closed
+SESSION_SAVE_EVERY_REQUEST = True  # Save session data on every request
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'

@@ -132,19 +132,28 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="/" class="logo">NGL</a>
+        <a href="{% url 'app1:dashboard' %}" class="logo">NGL</a>
         <div class="nav-buttons">
-            <a href="{% url 'register' %}" class="register-btn">Register</a>
-            <a href="{% url 'login' %}" class="login-btn">Login</a>
+            <a href="{% url 'app1:logout' %}" class="login-btn">Logout</a>
         </div>
     </nav>
 
     <div class="messages-container">
         {% for message in messages %}
-        <div class="message-card">
-            <p class="message-text">{{ message.encrypted_text }}</p>  <!-- Display encrypted message -->
-            <span class="message-sender">Sender: {{ message.sender.username }}</span>
-            <span class="message-date">{{ message.created_at }}</span>
+        <div class="message-card {% if not message.is_approved %}pending{% endif %}">
+            <p class="message-text">
+                {{ message.plain_text }}
+            </p>
+            <span class="message-sender">Receiver: {{ message.receiver }}</span>
+            {% load tz %}
+            <span class="message-date">{{ message.created_at|localtime }}</span>
+            <span class="message-status">
+                {% if message.is_approved %}
+                    <span class="status-approved">✓ Approved</span>
+                {% else %}
+                    <span class="status-pending">⏳ Pending Approval</span>
+                {% endif %}
+            </span>
         </div>
         {% endfor %}
     </div>

@@ -157,15 +157,15 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="/" class="logo">NGL</a>
-        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        <a href="{% url 'app1:homepage' %}" class="logo">NGL</a>
+        <a href="{% url 'app1:logout' %}" class="logout-btn">Logout</a>
     </nav>
 
     <div class="dashboard-container">
         <h1 class="welcome-title">Welcome, {{ user.username }} ✨</h1>
         
         <div class="message-card">
-            <form method="post">
+            <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                     <textarea 
